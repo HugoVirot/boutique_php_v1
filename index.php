@@ -10,18 +10,43 @@ include 'head.php';
 ?>
 
 <body>
-    <?php 
-    include 'header.php';
-    ?>
+   <?php
+   include 'header.php';
+   ?>
 
-    <main>
-    <h1>Boutique php</h1>
-       <?php 
-       
-       ?>
-    </main>
+   <main>
+      <h1>Boutique php</h1>
 
-    <?php 
-    include 'footer.php';
-    ?>
-    
+      <div class="container">
+         <div class="row">
+
+            <?php
+            // je déclare la variable qui contient mon tableau d'articles
+            // sa valeur, c'est le tableau d'articles renvoyé par la fonction getarticles
+            $articles = getArticles();
+
+            // je teste cette variable pour vérifier que j'ai bien mes 3 articles
+            //var_dump($articles);
+
+            // je lance ma boucle pour afficher une card bootstrap par article
+            foreach ($articles as $article) {
+
+               echo "<div class=\"card col-md-4\">
+                     <img src=\"./images/" . $article['picture'] . "\" class=\"card-img-top\" alt=\"...\">
+                     <div class=\"card-body\">
+                     <h5 class=\"card-title\">" . $article['name'] . "</h5>
+                     <p class=\"card-text\">" . $article['description'] . "</p>
+                     <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>
+                     </div>
+                     </div>";
+            }
+
+            ?>
+
+         </div>
+      </div>
+   </main>
+
+   <?php
+   include 'footer.php';
+   ?>

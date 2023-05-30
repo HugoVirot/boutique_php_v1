@@ -10,16 +10,16 @@ include 'head.php';
 ?>
 
 <body>
-    <?php 
-    include 'header.php';
-    ?>
+   <?php
+   include 'header.php';
+   ?>
 
-    <main>
-       <?php 
-       ?>
-    </main>
+   <main>
+      <h1>Validation</h1>
+      <?php
+      ?>
+   </main>
 
-    <?php 
-    include 'footer.php';
-    ?>
-    
+   <?php
+   include 'footer.php';
+   ?>
