@@ -2,9 +2,12 @@
 // j'inclus le fichier des fonctions pour pouvoir les appeler ici
 include 'functions.php';
 
-// 
+// initialiser la session et accéder à la superglobale $_SESSION (tableau associatif)
 session_start();
 
+// initialiser le panier
+createCart();
+var_dump($_SESSION);
 // j'inclus le head avec les balises de base + la balise head (pour ne pas répéter le code qu'il contient)
 include 'head.php';
 ?>
@@ -38,10 +41,13 @@ include 'head.php';
                      <p class=\"card-text\">" . $article['description'] . "</p>
 
                      <form method=\"GET\" action=\"./produit.php\">
-
                      <input type=\"hidden\" name=\"productId\" value=\"" . $article['id'] . "\">
-
                      <input type=\"submit\" class=\"btn btn-primary\" value=\"Détails produit\">
+                     </form>
+
+                     <form method=\"GET\" action=\"./panier.php\">
+                     <input type=\"hidden\" name=\"productId\" value=\"" . $article['id'] . "\">
+                     <input type=\"submit\" class=\"btn btn-primary\" value=\"Ajouter au panier\">
                      </form>
 
                      </div>

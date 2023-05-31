@@ -44,7 +44,7 @@ function getArticles()
             'picture' => 'watch3.jpg'
         ],
 
-        
+
         //********************** article 4 **********************/
         [
             'name' => 'Montre 4',
@@ -62,16 +62,54 @@ function getArticles()
 
 // ************* récupérer le produit qui correspond à l'id fourni en paramètre ******************
 
-function getArticleFromId($id) {
+function getArticleFromId($id)
+{
 
     // récupérer la liste des articles
     $articles = getArticles();
 
     // aller chercher dedans l'article qui comporte l'id en paramètre
-    foreach ($articles as $article){
+    foreach ($articles as $article) {
         if ($article['id'] == $id) {
-                // le renvoyer avec un return
+            // le renvoyer avec un return
             return $article;
         }
     }
+}
+
+// ************* initialiser le panier ******************
+
+function createCart()
+{
+    if (isset($_SESSION['panier']) == false) { // si mon panier n'existe pas encore
+        $_SESSION['panier'] = [];               // je l'initalise
+    }
+}
+
+
+// ********** ajouter l'article au panier et tester le résultat ***********
+
+function addToCart($article)
+{
+    // j'attribue une quantité de 1 (par défaut) à l'article
+    $article['quantite'] = 1;
+
+    // je vérifie si l'article n'est pas déjà présent en comparant les id
+    // for(
+        // $i = index de la boucle
+        // $i < count($_SESSION['panier']) = condition de maintien de la boucle (évaluée AVANT chaque tour)
+        // (si condition vraie => on lance la boucle)
+        // $i++ = évolution de l'index $i à la FIN de chaque boucle
+    for ($i = 0; 0 < count($_SESSION['panier']); $i++) {
+
+        // si présent => quantité +1
+        if ($_SESSION['panier'][$i]['id'] == $article['id']) {
+            $_SESSION['panier'][$i]['quantite']++;
+            return;  // permet de sortir de la fonction
+        }
+    }
+    
+
+    // si pas présent => ajout classique via array_push
+    array_push($_SESSION['panier'], $article);
 }
