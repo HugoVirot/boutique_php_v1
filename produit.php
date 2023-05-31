@@ -15,9 +15,32 @@ include 'head.php';
    ?>
 
    <main>
-      <h1>Produit</h1>
       <?php
+      // 1) récupérer l'id transmis par le formulaire en GET
+      $productId = $_GET['productId'];
+      //var_dump($productId); // je teste ma variable
+
+      // 2) récupérer le produit qui correspond à cet id
+      $article = getArticleFromId($productId);
+      //var_dump($productId); // je teste ma variable
+
+      // 3) afficher ses infos
       ?>
+
+      <div class="container">
+
+         <div class="card mb-3 text-center">
+            <img src="./images/<?= $article['picture']?>" class="card-img-top w-50 mx-auto" alt="...">
+            <div class="card-body">
+               <h1 class="card-title"><?= $article['name']?></h1>
+               <p class="card-text"><?= $article['price']?> €</p>
+               <p class="card-text"><?= $article['description']?></p>
+               <p class="card-text"><small class="text-body-secondary"><?= $article['detailedDescription']?></small></p>
+            </div>
+         </div>
+
+      </div>
+
    </main>
 
    <?php
